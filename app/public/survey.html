@@ -111,7 +111,7 @@
 						<p class="question">Generally speaking, you rely more on your experience than your imagination.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question2" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -128,7 +128,7 @@
 						<p class="question">You find it easy to stay relaxed and focused even when there is some pressure.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question3" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -145,7 +145,7 @@
 						<p class="question">You rarely do something just out of sheer curiosity.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question4" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -162,7 +162,7 @@
 						<p class="question">People can rarely upset you.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question5" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -179,7 +179,7 @@
 						<p class="question">It is often difficult for you to relate to other people’s feelings.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question6" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -196,7 +196,7 @@
 						<p class="question">In a discussion, truth should be more important than people’s sensitivities.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question7" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -210,10 +210,10 @@
 				<div class="row">
 					<div class="col s11 offset-s1">
 						<h5>Question 8</h5>
-						<p class="question">You rarely get carried away by fantasies and ideas.</p>
+						<p class="question8">You rarely get carried away by fantasies and ideas.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question8" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -230,7 +230,7 @@
 						<p class="question">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question9" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -247,7 +247,7 @@
 						<p class="question">You feel more energetic after spending time with a group of people.</p>
 					</div>
 					<div class="col s3 offset-s1">
-					  <select id="question1" class="browser-default">
+					  <select id="question10" class="browser-default">
 					    <option value="" disabled selected>Choose your option</option>
 					    <option value="1">1 (Strongly Disagree)</option>
 						<option value="2">2</option>
@@ -280,7 +280,7 @@
 
 				<h5 class="white-text">Friend Finder App</h5>
 
-				<p class="grey-text text-lighten-4">Thank you for taking the brief survey. Your responses will be used for training purposes only :-].</p>
+				<p class="grey-text text-lighten-4">Thank you for taking this breif survey!</p>
 
 			</div>
 
@@ -310,6 +310,84 @@
 	</div>
 
 </footer>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<h4>Meet Your Most Compatible Friend</h4>
+		<h5 id="matchName"></h5>
+        <img id="matchPic" src="" alt="No Image" width = 250px>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+	</div>
+</div>
+
+
+<!-- Grabs information and sends it to server -->
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+
+	$("#submitButton").on("click", function() {
+		event.preventDefault();
+		// console.log("working");
+
+		var newFriend = {
+            name: $('#userName').val().trim(),
+            profilePic: $('#userPhoto').val().trim(),
+            scores: [
+                $('#question1').val(),
+                $('#question2').val(),
+                $('#question3').val(),
+                $('#question4').val(),
+                $('#question5').val(),
+                $('#question6').val(),
+                $('#question7').val(),
+                $('#question8').val(),
+                $('#question9').val(),
+                $('#question10').val(),
+            ]
+        };
+
+        // console.log("working");
+        // console.log(newFriend.name);
+        // console.log(newFriend.profilePic);
+
+        //Grabs current URL of website
+        var currentURL = window.location.origin;
+
+
+        //AJAX posts the data to friends API
+        $.post(currentURL + "/api/friends", newFriend, function(data) {
+            //Grab the result from the AJAX post so that the best match's name and photo are displayed.
+            $("#matchName").text(data.name);
+            $("#matchPic").attr("src", data.profilePic);
+        });
+
+        // Show the modal with the best match
+        $(".modal").modal();
+
+        //clear form after submission
+        $('#name').val("");
+        $('#photo').val("");
+        $('#question1').val("");
+        $('#question2').val("");
+        $('#question3').val("");
+        $('#question4').val("");
+        $('#question5').val("");
+        $('#question6').val("");
+        $('#question7').val("");
+        $('#question8').val("");
+        $('#question9').val("");
+        $('#question10').val(""); 
+
+	});
+
+});
+
+</script>
 
 </body>
 </html>
