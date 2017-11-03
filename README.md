@@ -6,7 +6,7 @@ Created during Week 13 of Rutgers Coding Bootcamp. The goal was to create a Frie
 
 ### **Getting Started** 
 
-To view the site and interact with other users' data, visit
+To view the site visit [https://frnd-fnder-app.herokuapp.com/](https://frnd-fnder-app.herokuapp.com/)
 
 ### **Instruction** 
 To run the site locally and interact with only your own and the example data,
