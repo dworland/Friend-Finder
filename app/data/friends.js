@@ -34,7 +34,7 @@ var friendsArray = [
 	},
 	{
 		name: "Joey",
-		photo: "https://vignette.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg/revision/latest?cb=20070426103739",
+		photo: "https://vignette.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg",
 		scores: [
 			'4',
 			'3',
@@ -66,7 +66,7 @@ var friendsArray = [
 	},
 	{
 		name: "Ross",
-		photo: "https://www.thesun.co.uk/wp-content/uploads/2017/08/nintchdbpict000003441959.jpg?strip=all&w=771",
+		photo: "https://www.thesun.co.uk/wp-content/uploads/2017/08/nintchdbpict000003441959.jpg",
 		scores: [
 			'1',
 			'1',
@@ -96,70 +96,6 @@ var friendsArray = [
 			'5'
 		]
 	},
-	{
-		name: "Janice",
-		photo: "https://pbs.twimg.com/profile_images/534578109417140224/PZZETnJX_400x400.jpeg",
-		scores: [
-			'5',
-			'4',
-			'4',
-			'2',
-			'4',
-			'4',
-			'3',
-			'2',
-			'3',
-			'3'
-		]
-	},
-	{
-		name: "Gunther",
-		photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4bd4IdUV_VQ-lrnbI2uyMZMetC1GHtFiMpfRtUhg1OzzzUoWF",
-		scores: [
-			'5',
-			'2',
-			'3',
-			'1',
-			'5',
-			'1',
-			'3',
-			'1',
-			'1',
-			'5'
-		]
-	},
-	{
-		name: "Richard",
-		photo: "https://vignette.wikia.nocookie.net/friends/images/1/13/TOMSELLECK.jpg/revision/latest?cb=20080803014323",
-		scores: [
-			'5',
-			'5',
-			'5',
-			'5',
-			'5',
-			'5',
-			'5',
-			'5',
-			'5',
-			'5'
-		]
-	},
-	{
-		name: "Emily",
-		photo: "https://images2.fanpop.com/image/polls/330000/330096_1258716137788_full.jpg?v=1258716175",
-		scores: [
-			'1',
-			'1',
-			'1',
-			'1',
-			'1',
-			'1',
-			'1',
-			'1',
-			'1',
-			'1'
-		]
-	}
 ];
 
 module.exports = friendsArray;

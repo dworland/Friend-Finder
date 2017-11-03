@@ -19,9 +19,8 @@ module.exports = function(app) {
 		var userResponses = userInput.scores;
 
 		// Compute best friend match
-		var matchName = '';
-		var matchImage = '';
-		var totalDifference = 10000; 
+		var scores = []; 
+		var match = 0;
 
 		// Examine all existing friends in the list
 		for (var i = 0; i < friends.length; i++) {
@@ -30,22 +29,24 @@ module.exports = function(app) {
 			// Compute differenes for each question
 			var diff = 0;
 			for (var j = 0; j < userResponses.length; j++) {
-				diff += Math.abs(friends[i].scores[j] - userResponses[j]);
+				diff += Math.abs(parseInt(friends[i].scores[j]) - parseInt(userResponses[j]));
 			}
 
-			// If lowest difference, record the friend match
-			if (diff < totalDifference) {
+			scores.push(diff);
 
-				totalDifference = diff;
-				matchName = friends[i].name;
-				matchImage = friends[i].photo;
+		}
+
+		for (var y = 0; y < scores.length; y++) {
+			if (scores[y] <= scores[match]) {
+				match = y;
 			}
 		}
 
-		// Add new user
+		var matchedFriend = friends[match];
+
+		res.json(matchedFriend);
+
 		friends.push(userInput);
 
-		// Send appropriate response
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
 	});
 };

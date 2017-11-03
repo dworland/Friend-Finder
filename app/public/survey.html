@@ -74,13 +74,13 @@
 					<div class="input-field col s6 offset-s3">
 						<h5>Name (Required)</h5>
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" class="validate" placeholder="Your Name Here" id="userName">
+						<input type="text" class="validate" placeholder="Your Name Here" id="name">
 					</div>
 
 					<div class="input-field col s6 offset-s3">
 						<h5>Link to Photo Image (Required)</h5>
 						<i class="material-icons prefix">picture_in_picture</i>
-						<input type="text" class="validate" placeholder="Photo Link Here" id="userPhoto">
+						<input type="text" class="validate" placeholder="Photo Link Here" id="photo">
 					</div>
 
 				</div>
@@ -316,10 +316,10 @@
 	<div class="modal-content">
 		<h4>Meet Your Most Compatible Friend</h4>
 		<h5 id="matchName"></h5>
-        <img id="matchPic" src="" alt="No Image" width = 250px>
+        <img id="matchPic" src="" width = 300px>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+		<a href="#!" id="close" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
 	</div>
 </div>
 
@@ -335,8 +335,8 @@ $(document).ready(function(){
 		// console.log("working");
 
 		var newFriend = {
-            name: $('#userName').val().trim(),
-            profilePic: $('#userPhoto').val().trim(),
+            name: $('#name').val().trim(),
+            profilePic: $('#photo').val().trim(),
             scores: [
                 $('#question1').val(),
                 $('#question2').val(),
@@ -363,11 +363,12 @@ $(document).ready(function(){
         $.post(currentURL + "/api/friends", newFriend, function(data) {
             //Grab the result from the AJAX post so that the best match's name and photo are displayed.
             $("#matchName").text(data.name);
-            $("#matchPic").attr("src", data.profilePic);
+            $("#matchPic").attr("src", data.photo);
         });
 
         // Show the modal with the best match
-        $("#modal1").modal();
+       	$("#modal1").modal();
+        $("#modal1").modal("open");
 
         //clear form after submission
         $('#userName').val("");
@@ -382,6 +383,7 @@ $(document).ready(function(){
         $('#question8').val("");
         $('#question9').val("");
         $('#question10').val(""); 
+
 
 	});
 
